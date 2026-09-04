@@ -1,0 +1,38 @@
+{
+  "ml": {
+    "variants": [
+      "Outside coursework, I build and ship AI products end to end -- most recently CivicIQ, a civic-complaint triage platform whose core is a multi-agent pipeline (classifier -> priority scorer -> department router) running on Groq-hosted LLMs. I'm drawn to your work on decision-making and learning under uncertainty, and would love to see how that kind of thinking applies to real deployed systems.",
+      "I've been building applied ML systems on my own -- a multi-agent triage pipeline for CivicIQ (classifier, priority scorer, router) and an autonomous desktop agent that runs a full perception-and-action loop. I'm looking to go deeper on the theory side, and your research on learning and decision-making seems like exactly the right place to do that."
+    ]
+  },
+  "nlp": {
+    "variants": [
+      "Outside coursework, I build and ship AI products end to end -- most recently CivicIQ, a civic-complaint triage platform with a RAG pipeline over Firestore vector search and an LLM-based classification layer. I'm particularly interested in information retrieval and responsible AI, and would love to contribute to your group's work in that space.",
+      "I've been working hands-on with retrieval and language systems -- built a RAG pipeline (chunking, embeddings, vector search) for CivicIQ and use LLM tool-calling as the reasoning core of an autonomous desktop agent. Your work in NLP and information retrieval is exactly the direction I want to specialize in."
+    ]
+  },
+  "cv": {
+    "variants": [
+      "Outside coursework, I build and ship AI products end to end -- most recently an autonomous desktop agent that runs a vision-and-tool-calling model over live screenshots to understand and act on what's on screen, and IBVAP, a CCTV-based border surveillance system (human/vehicle detection, ANPR, virtual-fence intrusion) I'm building for Smart India Hackathon 2026 using YOLOv8. I'd love to learn computer vision research properly under your guidance.",
+      "I've been building applied computer vision systems -- a desktop agent that reasons over screenshots via a vision-language model, and an in-progress SIH project (IBVAP) doing real-time detection and analytics on CCTV video with YOLOv8. Your work in vision and affective computing is exactly what I want to go deeper on."
+    ]
+  },
+  "systems": {
+    "variants": [
+      "Outside coursework, I build and ship full AI-powered systems end to end -- CivicIQ (React/Node backend on Render, Firebase, multi-agent AI pipeline) and an autonomous desktop agent that closes a screenshot -> vision model -> tool-calling -> action loop in real time. I'm especially interested in the systems and infrastructure side of making AI actually run reliably in production.",
+      "I like building the full stack under an AI system, not just the model -- deployment, backend architecture, and the agent loop itself. CivicIQ and my desktop agent (ULTRON) taught me a lot about that the hard way, and I'd love to learn the systems side properly under your guidance."
+    ]
+  },
+  "data": {
+    "variants": [
+      "Outside coursework, I build and ship AI products end to end -- most recently CivicIQ, a civic-complaint triage platform with a RAG pipeline over Firestore vector search and a priority-scoring layer that ranks incoming complaints. I'm interested in AI for social good and data-driven systems, and your group's work in that direction is a big part of why I'm reaching out.",
+      "I've been building data-driven AI systems on my own -- CivicIQ's classifier and priority-scoring pipeline is essentially triage-by-data for municipal complaints. I'd love to learn how to do that kind of applied, responsible AI work rigorously under your guidance."
+    ]
+  },
+  "robotics": {
+    "variants": [
+      "Outside coursework, I build and ship AI products end to end -- currently IBVAP, an AI/CV-based border surveillance platform (human/vehicle detection, ANPR, virtual-fence intrusion alerts on live CCTV) I'm building for Smart India Hackathon 2026, plus an autonomous desktop agent that runs a perception -> reasoning -> action loop. I'd love to learn how that translates to real-world robotic/embodied systems under your guidance.",
+      "I've been working on real-time perception-and-action systems -- IBVAP does live video analytics for border security, and my desktop agent (ULTRON) runs a full screenshot -> vision model -> action loop. I'm keen to learn how these ideas extend to physical/robotic systems under your guidance."
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+About Tiru Venkatesh (Musirana Veera Venkata Tiru Venkatesh)
+
+Tiru is a first-year B.Tech Computer Science student at JNTU Narasaraopeta.
+He builds AI-powered web products under the brand "Tiru Builds" and pitches
+development services to local businesses (gyms, restaurants). He also
+participates in hackathons.
+
+GitHub: https://github.com/tiru-venkatesh
+Portfolio: https://tiru-venkatesh.vercel.app
+LinkedIn: https://www.linkedin.com/in/tiru-venkatesh-830907202/
+Contact: tiruvenkatesh123@gmail.com
+
+Projects:
+
+CivicIQ -- a full-stack AI-powered civic complaint triage platform for
+Indian municipal corporations (primarily Mumbai/BMC). Stack: React/
+TypeScript/Vite frontend on Vercel, Node.js/Express backend on Render,
+Firebase Auth/Firestore, Cloudinary for image storage, Groq API for LLM
+inference. Implements a multi-agent AI pipeline (classifier -> priority
+scorer -> department router) and a RAG pipeline built on Firestore vector
+search. Also has Google Maps integration and a Framer Motion landing page.
+Submitted to Gen AI Academy APAC. GitHub: tiru-venkatesh/civic-iq
+
+ULTRON -- an autonomous desktop agent: screenshot -> vision-and-tool-calling
+model (Groq) -> pyautogui actions, in a continuous loop. Has a career/
+professor-outreach module (this Jarvis email tool) and a web frontend
+called JARVIS that talks to the backend over WebSocket.
+
+SIH 2026 (IBVAP) -- Smart India Hackathon 2026 team project, Problem
+Statement 188: an AI/CV-based software-defined border surveillance system
+using existing CCTV infrastructure -- human/vehicle detection, ANPR, face
+detection, virtual fence intrusion, suspicious activity detection, and
+real-time alerts. Considering Tesseract for OCR and YOLOv8 for detection.
+
+Portfolio site -- an anime/Spider-Man-inspired developer portfolio built in
+vanilla HTML/CSS/JS, hosted at tiru-venkatesh.vercel.app, showcasing
+CivicIQ, PULSE, IRONBOARD, and StadiumOS.

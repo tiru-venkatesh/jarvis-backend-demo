@@ -1,0 +1,1243 @@
+# TIRU VENKATESH — JARVIS MASTER KNOWLEDGE BASE
+
+*Consolidated profile + full deployment footprint (Vercel, Render, Netlify) for use as the personal knowledge base for the JARVIS AI assistant.*
+*Last updated: August 31, 2026*
+
+---
+
+## 1. Identity
+
+- **Full Name:** M V V Tiru Venkatesh
+- **Preferred Name:** Tiru
+- **Personal Brand:** Tiru Builds
+- **Creator Handle:** @lockintiru
+- **Persona / Ambition:** "India Zuck"
+- **Email:** tiruvenkatesh123@gmail.com
+- **GitHub (current/primary):** tiru-venkatesh
+- **GitHub (earlier/legacy account):** tiru94397
+- **LinkedIn:** linkedin.com/in/tiru-venkatesh-830907202/
+
+---
+
+## 2. Education
+
+- **Degree:** B.Tech — Computer Science & Engineering
+- **College:** JNTU Narasaraopeta (JNTU NRT)
+- **Current stage:** B.Tech CSE student (first year)
+- **Career direction:** AI Engineer / AI Product Builder
+
+Current focus areas: AI engineering, LLMs, AI agents, AI-powered products, hackathons, full-stack development, technical portfolio building, personal brand/content, startup/product experimentation.
+
+---
+
+## 3. Core Identity
+
+Tiru is a **builder-first CSE student focused on AI engineering and product development**.
+
+Philosophy: **Learn → Build → Ship → Demonstrate → Get users/opportunities → Build bigger.**
+
+Main interests: Artificial Intelligence, Machine Learning, LLMs, Generative AI, AI Agents, Computer Vision, RAG systems, Automation, Full-stack web apps, Developer tools, AI SaaS, Autonomous agents, AI + real-world business applications.
+
+A major learning direction is **deep LLM learning** — treated as a long-term skill, not just API usage.
+
+---
+
+## 4. Technical Skills
+
+**Programming:** Python, JavaScript, TypeScript
+
+**AI/ML:** LLMs, Generative AI, RAG, AI Agents, Tool Calling, Computer Vision, Object Detection, OCR, Vision-language models, Model inference, Prompt engineering, Local LLMs
+
+**Frameworks/Backend:** FastAPI, Django, Node.js, Express.js
+
+**Frontend:** React, React + Vite, TypeScript, dashboard/UI development
+
+**Databases/Cloud:** MongoDB, Firebase, Firestore, Google Cloud, Render, Vercel, Netlify
+
+**AI APIs/Models:** Groq, Ollama, Llama-family local models, Vision models
+
+**Computer Vision/Automation:** OpenCV, YOLO, RetinaFace/MediaPipe concepts, Tesseract/EasyOCR, PyAutoGUI
+
+**Dev Tools:** Git, GitHub, VS Code, Linux/Windows dev environments, API integration, deployment/debugging
+
+---
+
+## 5. Major Projects
+
+### CivicIQ
+AI-powered civic complaint triage platform. Analyzes complaints, calculates priority, detects duplicates, routes to the right department, and gives authorities an intelligent dashboard.
+
+Priority model: `Priority = Severity×0.40 + Population Affected×0.25 + Delay Impact×0.20 + Weather/Risk×0.15`
+
+Stack: React, Vite, TypeScript, FastAPI, Groq, Firebase/Firestore, Google Maps, Render, Vercel/Netlify. One of the major hackathon/product projects.
+
+### RealMind AI / Virtual Factory AI
+AI product/startup direction. Work includes AI infrastructure, inference, applications, agents, and an inference logging platform — considered strong enough for a Founding Engineer-level narrative.
+
+### ULTRON — Autonomous Desktop AI Agent
+Architecture: **Screenshot → Vision Model → Understand Screen → Tool Calling → PyAutoGUI → Desktop Action → New Screenshot → Repeat**
+
+Capabilities: screenshot understanding, vision-model reasoning, tool calling, desktop/mouse/keyboard automation, autonomous task execution, career/professor-outreach automation module, JARVIS web frontend. Uses Groq vision, vision-language models, Python, PyAutoGUI.
+
+### JARVIS — Local AI Personal Assistant (this project)
+Architecture: local LLM + personal knowledge + tools (Ollama-based).
+
+Explored: Ollama, local LLMs, Gmail integration (send + bulk email via `credentials.json`, Google OAuth, Gmail API), personal knowledge base, agent-style actions, web frontend.
+
+Vision: **Talk → Understand → Reason → Access knowledge → Use tools → Execute task**
+
+### Professor / Career Outreach Automation
+System idea: find professors/researchers → understand their research → generate personalized outreach → send emails → track → follow up → maintain knowledge base → use AI to improve personalization at scale, without generic mass-blasting.
+
+### Anime-Inspired Developer Portfolio
+`tiru-venkatesh.vercel.app` — designed to feel like a product/experience rather than a generic resume site. (See also the itachi/batman/spydy portfolio variants in the deployment footprint below.)
+
+---
+
+## 6. Hackathon Journey
+
+### Smart India Hackathon — PS 188: IBVAP
+**IBVAP — Intelligent Border Video Analytics Platform** (border surveillance / national-security domain), positioned as a serious proposal rather than a college mini-project.
+
+Core modules:
+- **Human Detection & Tracking** — YOLO-based
+- **Vehicle Detection & Classification** — cars, trucks, bikes, other
+- **Face Detection** — RetinaFace / MediaPipe
+- **ANPR** — Plate Detection → OCR (Tesseract/EasyOCR) → Plate Number
+- **Night-time / Surveillance Analytics** — for difficult low-light conditions
+
+### Google Gen AI Academy Hackathon
+Progressed: team formation → prototype submission → evaluation → Top 100 → refinement → final evaluation → **Top 10** → virtual finale → winner announcement → Elite Club/graduation. Used Google Cloud credits, free-tier architecture (Groq, FastAPI, React/Vite, Render, Vercel/Netlify, Firebase) to avoid unnecessary cloud costs.
+
+---
+
+## 7. Content Creation / Personal Brand
+
+**Brand:** Tiru Builds | **Handle:** @lockintiru
+
+Direction: AI building, RealMind AI journey, project building, developer journey, hackathons, AI engineering, startup experiments, technical learning, build-in-public content.
+
+Philosophy: **Document real projects + real progress + real problems + real builds** — generic/faceless content doesn't differentiate.
+
+---
+
+## 8. Business / Agency Experiments
+
+Selling software/AI to local businesses (gyms, restaurants, others). Approach: **find real business pain → build a focused solution → demo it → get feedback → convert to paying customer.**
+
+### Gym SaaS Idea
+Problems addressed: check-in chaos, equipment availability, paper workout plans, progress tracking, trainer assignment, membership renewals.
+Hook: **"One Button → Trainer Phone Rings."**
+Other features: real-time class availability, progress tracking, renewal reminders, WhatsApp/SMS, trainer dashboard + performance tracking, equipment maintenance requests.
+Pricing explored: Small gym ₹1,499/mo · Medium ₹3,499/mo · Large ₹8,999/mo + custom.
+
+### Restaurant AI SaaS
+Pricing explored: ₹999/mo · ₹2,999/mo · ₹9,999/mo Enterprise, plus per-order pricing. Market is crowded — differentiation via a strong painkiller feature is necessary.
+
+---
+
+## 9. Career Direction
+
+**AI Engineer + AI Product Builder + Founder mindset.**
+
+Target areas: AI Engineering, LLM Engineering, AI Agents, Generative AI, Computer Vision, AI infrastructure, full-stack AI apps, AI startups, research/internships, founding-engineer roles.
+
+Goal arc: **Idea → Architecture → Code → AI Model → Product → Deployment → Users**
+
+---
+
+## 10. Learning Philosophy
+
+Core commitment: **deeply understand LLMs** — not just call an API, but understand transformers, attention, tokenization, embeddings, training, fine-tuning, inference, RAG, tool calling, agents, context windows, evaluation, model serving, AI infrastructure.
+
+---
+
+## 11. Engineering Experience & Lessons
+
+Real issues navigated: GitHub secret scanning, a service-account credential leak (Google Cloud) that was blocked by GitHub before merging, Firebase rules, API keys, Vite config, npm dependency issues, Render deployment, backend config, environment variables, OAuth setup, build-directory issues, missing `package.json`, free-tier limitations.
+
+Lessons: never commit secrets, `.gitignore` discipline, environment-variable management, service-account credential handling, git history cleanup.
+
+---
+
+## 12. Personal Development Goals (historical context)
+
+Previously worked toward: body transformation, reducing body fat, fitness/gym, discipline, better routine, consistency. Broader theme: **become stronger physically + technically + professionally.**
+
+**Previous financial ambition:** ₹50 lakh goal by March 2026 — that date has passed, so treat as a past target, not a current deadline. Underlying ambition (build valuable skills/products/businesses that generate significant income) remains current.
+
+---
+
+## 13. Personal Brand Positioning
+
+> **Tiru Venkatesh — AI Engineer & Builder**
+> **Tiru Builds — Building AI products, agents and real-world software.**
+
+Identity: not just "CSE student" — **a CSE student who actively builds AI systems and products.**
+
+---
+
+## 14. Project Ecosystem
+
+```
+Tiru Builds (public brand)
+   ↓
+RealMind AI / Virtual Factory AI (product/startup direction)
+   ↓
+ULTRON (autonomous computer-use agent)
+   ↓
+JARVIS (personal local AI assistant + tools)
+   ↓
+CivicIQ (AI applied to civic intelligence)
+   ↓
+IBVAP (AI + CV applied to border surveillance)
+   ↓
+Future: deeper LLM systems + agents + AI infra + products
+```
+
+**Strongest technical story:** *"I don't just use AI APIs. I build systems around AI."*
+
+---
+
+## 15. Current Priorities
+
+1. AI engineering
+2. Deep LLM learning
+3. Building serious AI projects
+4. Hackathons / SIH
+5. Internships / career opportunities
+6. Tiru Builds content
+7. Product/business experimentation
+8. Strong GitHub + portfolio
+9. Personal discipline and consistency
+
+---
+
+## 16. Working Style
+
+Prefers: practical execution, building quickly, strong visual/premium UI, real working prototypes, short/direct answers when planning, strong project positioning, automation, free/low-cost infra, AI as an actual engineering component.
+
+Mindset: **"Don't just learn it. Build it."**
+
+---
+
+## 17. One-Line Profile
+
+M V V Tiru Venkatesh is a B.Tech CSE student and AI-focused builder creating LLM applications, autonomous agents, computer-vision systems and AI-powered web products under Tiru Builds, while pursuing hackathons, internships, product opportunities and deeper AI/LLM engineering expertise.
+
+## 18. Short Professional Bio
+
+Tiru Venkatesh is a B.Tech Computer Science student at JNTU Narasaraopeta and an AI-focused builder behind Tiru Builds. He develops AI-powered products and autonomous systems across LLMs, computer vision, agentic automation and full-stack development. His projects include CivicIQ (AI-powered civic complaint intelligence), ULTRON (autonomous desktop agent using vision and tool calling), JARVIS (local Ollama-based AI assistant with Gmail and automation capabilities), and IBVAP (intelligent border video analytics platform). He is interested in AI engineering, LLMs, agents, computer vision, startups, hackathons and building real-world AI products.
+
+## 19. Builder Philosophy
+
+**Learn deeply. Build aggressively. Ship publicly. Solve real problems. Turn projects into opportunities. Keep improving.**
+
+**Core motto: BUILD. SHIP. LEARN. REPEAT.**
+
+---
+
+## 20. Extended Deployment & Hosting Footprint
+
+*Pulled directly from Vercel, Render, and Netlify dashboards as of August 31, 2026. Two GitHub identities are visible: `tiru-venkatesh` (current/primary, mostly AI-focused work from Feb 2026 onward) and `tiru94397` (earlier/legacy account, mostly 2025 personal/hackathon/freelance sites).*
+
+### 20.1 Vercel — ~51 projects
+
+| Project | Live URL | Linked repo | Last update |
+|---|---|---|---|
+| jarvis-guide-tb | jarvis-guide-tb.vercel.app | *(not connected)* | 18h ago |
+| heyh | heyh.vercel.app | *(not connected)* | 1d ago |
+| meghavi-wellness | meghavi-wellness-beta.vercel.app | *(not connected)* | Aug 28 |
+| spydy-portfolio-tb | spydy-portfolio-tb.vercel.app | tiru-venkatesh/spydy-portfolio | Aug 27 |
+| civic-iq | civic--iq.vercel.app | tiru-venkatesh/civic-iq | Aug 26 |
+| itachi-portfolio | itachi-portfolio-tb.vercel.app | tiru-venkatesh/itachi-portfolio | Aug 21 |
+| batman-portfolio | batman-portfolio-tb.vercel.app | tiru-venkatesh/batman-portfolio | Aug 14 |
+| hj1 | hj1-ten.vercel.app | tiru-venkatesh/hj1 | Aug 7 |
+| civic-iq-demo-final | civic-iq-demo-final.vercel.app | tiru-venkatesh/civic-iq-demo-final | Jul 28 |
+| radisson-spa | radisson-spa.vercel.app | tiru-venkatesh/radisson-spa | Jul 26 |
+| civic-iq-frontend | civic-iq-frontend.vercel.app | tiru-venkatesh/civic-iq-frontend | Jul 25 |
+| stadium-os | stadium-os-kohl.vercel.app | tiru-venkatesh/StadiumOS | Jul 19 |
+| civic-ai-i3go | civic--ai.vercel.app | tiru-venkatesh/civic-ai | Jul 6 |
+| civic-ai | civic-ai-pi.vercel.app | tiru-venkatesh/civic-ai | Jul 5 |
+| ecotrack-ai | ecotrack-ai-tiru.vercel.app | tiru-venkatesh/ecotrack-ai | Jun 21 |
+| fit | fit-forge-tiru.vercel.app | tiru-venkatesh/fit | Jun 13 |
+| ollive-ai | ollive-ai.vercel.app | tiru-venkatesh/ollive-ai | May 22 |
+| ag-frontend | ag-arshita.vercel.app | tiru-venkatesh/ag-frontend | May 15 |
+| portfolio | tiru-venkatesh.vercel.app | tiru-venkatesh/Portfolio | May 10 |
+| rm-3 | realmind-3.vercel.app | tiru-venkatesh/rm-3 | May 8 |
+| realmind | realmind-2.vercel.app | tiru-venkatesh/realmind-2 | May 5 |
+| rm1 | rm1-nine.vercel.app | tiru-venkatesh/rm1 | May 4 |
+| election-flow-ai | election-flow-ai.vercel.app | tiru-venkatesh/election-flow-ai | May 2 |
+| trendsetter-sample | trendsetter-sample-page.vercel.app | tiru94397/trendsetter-sample | 12/22/25 |
+| mumbai-hacks | mumbai-hacks-tiru.vercel.app | tiru-venkatesh/mumbai-hacks | Apr 20 |
+| spirit | spirit-ten.vercel.app | tiru-venkatesh/spirit | Apr 13 |
+| img2xl-backend-3 | img2xl-backend-3.vercel.app | tiru-venkatesh/img2xl-backend-3 | Feb 21 |
+| gynex-ai-frontend | gynex-ai-hit.vercel.app | tiru-venkatesh/gynex-ai-frontend | Feb 16 |
+| hackaton | vf-ai.vercel.app | tiru94397/hackaton | 11/22/25 |
+| gynex-ai | gynex-ai.vercel.app | tiru-venkatesh/Gynex-AI | Feb 7 |
+| img2xl-preplexity-dummy-1zo4 | img2xl-preplexity-dummy-1zo4.vercel.app | tiru-venkatesh/img2xl-preplexity-dummy | Feb 7 |
+| img2xl-preplexity-dummy | img2xl-preplexity-dummy.vercel.app | tiru-venkatesh/img2xl-preplexity-dummy | Feb 7 |
+| img2xl-backend-prototype | img2xl-backend-prototype.vercel.app | tiru-venkatesh/img2xl-backend-prototype | Feb 4 |
+| g-connect-frontend | g-connect-frontend.vercel.app | tiru94397/G-connect-frontend | 12/20/25 |
+| wishpageai | wishpageai.vercel.app | tiru94397/wishpageai | 12/11/25 |
+| birthday-template1 | birthday-template1.vercel.app | tiru94397/birthday-template | 12/7/25 |
+| birthday-template | birthday-template-two.vercel.app | tiru94397/birthday-template | 12/7/25 |
+| hackfront1 | hackfront1.vercel.app | tiru94397/hackfront1 | 10/18/25 |
+| hackfrontt | hackfrontt.vercel.app | tiru94397/hackfront | 10/18/25 |
+| cycloroof-aditya-siddu | cycloroof-aditya-siddu.vercel.app | tiru94397/aditya | 9/26/25 |
+| siddu-cycloroof | siddu-cycloroof.vercel.app | tiru94397/cycloroof | 9/26/25 |
+| ocyamic-frontend-n3qi | ocyamic-frontend-n3qi.vercel.app | tiru94397/ocyamic-frontend | 9/22/25 |
+| ocyamic-frontend | ocyamic-frontend.vercel.app | tiru94397/ocyamic-frontend | 9/22/25 |
+| ocyamic-frontend-nnfg | ocyamic-frontend-nnfg.vercel.app | tiru94397/ocyamic-frontend | 9/22/25 |
+| madhu-garu | madhu-garu.vercel.app | tiru94397/madhu-garu | 9/10/25 |
+| gym | gym-tiru.vercel.app | tiru94397/gym | 9/5/25 |
+| janvi-dmi8 | matter-enti-ante--matter-adhi.vercel.app | tiru94397/janvi | 8/30/25 |
+| janvi-pfb8 | matter-enti-ante-matter-adhi.vercel.app | tiru94397/janvi | 8/30/25 |
+| janvi-dg1e | janvi-dg1e.vercel.app | tiru94397/janvi | 8/30/25 |
+| gptfront | gptfront-self.vercel.app | tiru94397/gptfront | 8/12/25 |
+| gpt | geethagpt.vercel.app | tiru94397/gpt | 8/11/25 |
+
+### 20.2 Render — 49 services total (10 active, 39 suspended), all Oregon region
+
+**Active / Deployed / Running:**
+civic-iq (Node), civic-iq-demo-final (Node), civicbackend (Node), ollive-ai (Docker), ag (Node), rm-3 (Node), realmind-2-1 (Node), realmind-2 (Node), img2xl-ai (Node), backend1 (Node)
+
+**Suspended (legacy backends, kept for reference):**
+ai-back-1, vfai-tiru-5, ai-back, vfai-tiru-2, vfai-tiru2, vfai-tiru-1, vfai-tiru, vfai-tiru1, 789-2, 789-1, 789, Whatsapp-Frontend, whats, backend1-3, backend1-2, backend1-4, backend1-1, gynex-ai-log-backend, img2xl-2-backend, img2xl-backend-prototype, mumbai-backend, vfai-tiru-4, vfai-tiru-3, G-connect-back-3, G-connect-back-6, G-connect-back-, G-connect-back, G-connect-back-2, G-connect-back-1, G-connect-back-5, G-connect-back-4, chat-backend, wavyline-backend, gptback, backs, app-1, app-2, app, whatsapp-backend
+
+### 20.3 Netlify — ~30 projects
+
+| Project | Type | Last published |
+|---|---|---|
+| tiruluvs | Netlify Drop | Jun 15, 2025 |
+| emergx1 | Netlify Drop | Jul 4, 2026 |
+| forgefit-ai | Netlify Drop | Jun 13, 2026 |
+| rm-1 | Netlify Drop | May 4, 2026 |
+| virtual-factory-ai | GitHub-linked | Apr 20, 2026 |
+| gynex-ai | Netlify Drop | Feb 8, 2026 |
+| lustrous-syrniki-47df5a | Netlify Drop | Feb 7, 2026 |
+| img2xl | Netlify Drop | Feb 5, 2026 |
+| trendsetter-sample-page | Netlify Drop | Dec 22, 2025 |
+| virtual-factory | GitHub-linked | Nov 29, 2025 |
+| realmind-tiru | GitHub-linked | Nov 29, 2025 |
+| presentation-realmind | Netlify Drop | Nov 24, 2025 |
+| goldsgym-narsaraopeta | Netlify Drop | Sep 4, 2025 |
+| sowjanyaportfolio | Netlify Drop | Aug 28, 2025 |
+| sukeerthi | Netlify Drop | Aug 19, 2025 |
+| sukeerti | Netlify Drop | Aug 19, 2025 |
+| satsdarling | Netlify Drop | Aug 13, 2025 |
+| tiruportfolio2 | Netlify Drop | Aug 4, 2025 |
+| makeup-mahi | Netlify Drop | Jul 30, 2025 |
+| burger-bliss-tiru | Netlify Drop | Jul 30, 2025 |
+| birthday-bash-for-jaideep | Netlify Drop | Jul 30, 2025 |
+| tic-tac-teo-tiru | Netlify Drop | Jul 30, 2025 |
+| surprise-by-siddu | Netlify Drop | Jul 25, 2025 |
+| rock-paper-scissors-94397 | Netlify Drop | Jul 24, 2025 |
+| sowji-bday | Netlify Drop | Jul 24, 2025 |
+| tiru-resume | Netlify Drop | Jul 23, 2025 |
+| calculator-by-tiru | Netlify Drop | Jul 19, 2025 |
+| prabhas-tribute-landing-page | Netlify Drop | Jul 3, 2025 |
+| agchelli | Netlify Drop | Jun 18, 2025 |
+| quiet-pudding-f2ad39 | Netlify Drop | Aug 8, 2026 (created) |
+
+---
+
+## 21. Master Identity Card
+
+```
+TIRU VENKATESH
+Student:    B.Tech CSE, JNTU Narasaraopeta
+Role:       AI Engineer / Builder
+Brand:      Tiru Builds (@lockintiru)
+Focus:      AI + LLMs + Agents + Computer Vision + Products
+Flagship:   CivicIQ · RealMind AI · ULTRON · JARVIS · IBVAP
+Footprint:  ~51 Vercel deployments · 49 Render services · ~30 Netlify sites
+GitHub:     tiru-venkatesh (current) · tiru94397 (legacy)
+Motto:      BUILD. SHIP. LEARN. REPEAT.
+```
+
+# TIRU VENKATESH — MASTER PROFILE
+
+## 1. Identity
+
+**Full Name:** M V V Tiru Venkatesh
+**Preferred Name:** Tiru
+**Personal Brand:** Tiru Builds
+**Creator Handle:** @lockintiru
+**Persona / Ambition:** “India Zuck”
+**Email:** [tiruvenkatesh123@gmail.com](mailto:tiruvenkatesh123@gmail.com)
+**GitHub:** tiru-venkatesh
+**LinkedIn:** linkedin.com/in/tiru-venkatesh-830907202/
+
+---
+
+# 2. Education
+
+**Degree:** B.Tech — Computer Science & Engineering
+**College:** JNTU Narasaraopeta (JNTU NRT)
+**Current stage:** B.Tech CSE student
+**Career direction:** AI Engineer / AI Product Builder
+
+The JEE/drop-year phase is complete. Current focus is primarily on:
+
+* AI engineering
+* LLMs
+* AI agents
+* AI-powered products
+* Hackathons
+* Full-stack development
+* Building a strong technical portfolio
+* Personal brand/content
+* Startup/product experimentation
+
+---
+
+# 3. Core Identity
+
+Tiru is a **builder-first CSE student focused on AI engineering and product development**.
+
+Rather than only learning technologies theoretically, the goal is to:
+
+**Learn → Build → Ship → Demonstrate → Get users/opportunities → Build bigger.**
+
+Main interests:
+
+* Artificial Intelligence
+* Machine Learning
+* LLMs
+* Generative AI
+* AI Agents
+* Computer Vision
+* RAG systems
+* Automation
+* Full-stack web applications
+* Developer tools
+* AI SaaS
+* Autonomous agents
+* AI + real-world business applications
+
+A major personal learning direction is **deep LLM learning**, treating it as a long-term skill rather than just using APIs.
+
+---
+
+# 4. Technical Skills / Technologies
+
+## Programming
+
+* Python
+* JavaScript
+* TypeScript
+
+## AI / ML
+
+* LLMs
+* Generative AI
+* RAG
+* AI Agents
+* Tool Calling
+* Computer Vision
+* Object Detection
+* OCR
+* Vision-language models
+* Model inference
+* Prompt engineering
+* Local LLMs
+
+## Frameworks / Backend
+
+* FastAPI
+* Django
+* Node.js
+* Express.js
+
+## Frontend
+
+* React
+* React + Vite
+* TypeScript
+* Modern dashboard/UI development
+
+## Databases / Cloud
+
+* MongoDB
+* Firebase
+* Firestore
+* Google Cloud
+* Render
+* Vercel
+* Netlify
+
+## AI APIs / Models
+
+* Groq
+* Ollama
+* Llama-family local models
+* Vision models
+
+## Computer Vision / Automation
+
+* OpenCV
+* YOLO
+* RetinaFace / MediaPipe concepts
+* Tesseract / EasyOCR
+* PyAutoGUI
+
+## Developer Tools
+
+* Git
+* GitHub
+* VS Code
+* Linux/Windows development environments
+* API integration
+* Deployment/debugging
+
+---
+
+# 5. Major Projects
+
+## A. CivicIQ
+
+**Type:** AI-powered civic intelligence platform
+
+### Problem
+
+Traditional civic complaint systems mainly collect complaints but don't intelligently help authorities decide:
+
+* Which complaint is most important?
+* Which complaints are duplicates?
+* Which department should handle it?
+* Which issue affects the most people?
+* What needs immediate attention?
+
+### CivicIQ solution
+
+AI-powered complaint triage system that can:
+
+* Analyze complaints
+* Calculate priority
+* Detect duplicate/similar complaints
+* Route complaints to the appropriate department
+* Help authorities prioritize work
+* Provide an intelligent dashboard
+* Display civic information spatially
+
+### Priority model discussed
+
+Priority score was designed around factors such as:
+
+* Severity
+* Population affected
+* Delay impact
+* Weather/risk
+
+Example weighting:
+
+**Priority = Severity × 0.40
+
+* Population Affected × 0.25
+* Delay Impact × 0.20
+* Weather/Risk × 0.15**
+
+### Stack
+
+* React
+* Vite
+* TypeScript
+* FastAPI / backend services
+* Groq
+* Firebase / Firestore
+* Google Maps
+* Render
+* Vercel / Netlify
+
+CivicIQ became one of the major hackathon/product projects in the journey.
+
+---
+
+# 6. RealMind AI / Virtual Factory AI
+
+**Brand / Product:** RealMind AI
+**Organization concept:** Virtual Factory AI
+
+Tiru has been building toward an AI-focused product/startup identity under this direction.
+
+The broader vision is to create practical AI systems rather than simple demos.
+
+Work discussed around RealMind includes:
+
+* AI infrastructure
+* AI inference
+* AI applications
+* AI agents
+* Product experimentation
+* An inference logging platform
+
+The inference logging work was considered strong enough to support a **Founding Engineer-level portfolio/application narrative**.
+
+---
+
+# 7. ULTRON
+
+**ULTRON = Autonomous Desktop AI Agent**
+
+This is one of the more advanced agent projects.
+
+### Core architecture
+
+**Screenshot → Vision Model → Understand Screen → Tool Calling → PyAutoGUI → Desktop Action → New Screenshot → Repeat**
+
+The system is designed around an autonomous computer-use loop.
+
+### Capabilities explored
+
+* Screenshot understanding
+* Vision-model reasoning
+* Tool calling
+* Desktop interaction
+* Mouse/keyboard automation
+* Autonomous task execution
+* Browser/desktop workflows
+* Career/professor outreach automation
+
+### Technology direction
+
+* Groq vision
+* Vision-language models
+* Tool calling
+* Python
+* PyAutoGUI
+* Computer automation
+
+ULTRON represents the move from traditional applications toward **AI agents that can actually operate computers.**
+
+---
+
+# 8. JARVIS
+
+**JARVIS = Local AI Personal Assistant**
+
+JARVIS is a separate/local assistant project.
+
+### Architecture
+
+Local LLM + personal knowledge + tools.
+
+The project has explored:
+
+* Ollama
+* Local LLMs
+* Gmail integration
+* Email sending
+* Bulk email tooling
+* Personal knowledge base
+* Agent-style actions
+* Web frontend
+
+### Gmail capability
+
+JARVIS can be connected to Gmail through Google's APIs and OAuth.
+
+The setup discussed included:
+
+* `credentials.json`
+* Google OAuth
+* Gmail API
+* Google API client libraries
+* Ollama local model
+
+### Larger vision
+
+JARVIS is intended to become more than a chatbot:
+
+**Talk → Understand → Reason → Access knowledge → Use tools → Execute task**
+
+---
+
+# 9. Professor / Career Outreach Automation
+
+A recurring project direction has been automating professor/internship outreach.
+
+The broader system idea:
+
+* Find professors/researchers
+* Understand their research
+* Generate personalized outreach
+* Send emails
+* Track outreach
+* Follow up
+* Maintain a knowledge base
+* Use AI to improve personalization
+
+There was also discussion around building an agent capable of sending **large-scale personalized professor outreach**, while keeping the emails personalized rather than simply blasting identical messages.
+
+---
+
+# 10. Anime-Inspired Developer Portfolio
+
+Tiru has also worked on an **anime-inspired developer portfolio website**.
+
+Known portfolio:
+
+**tiru-venkatesh.vercel.app**
+
+The goal is to make the portfolio feel more like a product/experience than a generic student resume.
+
+---
+
+# 11. Smart India Hackathon / Hackathon Journey
+
+Hackathons are an important part of Tiru's current career strategy.
+
+The focus is not simply participating, but building:
+
+* Strong problem understanding
+* Serious solution architecture
+* Working prototype
+* Premium UI
+* Strong presentation
+* Demo narrative
+* Judge-oriented pitching
+
+## SIH / Border Surveillance Work
+
+A major current direction is:
+
+**PS 188 — IBVAP**
+
+### Project
+
+**IBVAP — Intelligent Border Video Analytics Platform**
+
+### Domain
+
+Border surveillance / national security technology.
+
+### Core modules discussed
+
+#### Human Detection & Tracking
+
+YOLO-based detection and tracking of people across video frames.
+
+#### Vehicle Detection & Classification
+
+Detect and classify:
+
+* Cars
+* Trucks
+* Bikes
+* Other vehicles
+
+#### Face Detection
+
+Potential technologies:
+
+* RetinaFace
+* MediaPipe
+
+#### ANPR
+
+Automatic Number Plate Recognition:
+
+**Plate Detection → OCR → Plate Number**
+
+Technologies discussed:
+
+* Plate detection model
+* Tesseract
+* EasyOCR
+
+#### Night-time / Surveillance Analytics
+
+The architecture was being considered for difficult surveillance conditions including nighttime video.
+
+### Positioning
+
+IBVAP should feel like:
+
+**A serious national-security technology proposal**
+
+—not a generic college mini-project.
+
+---
+
+# 12. Previous Google Gen AI Hackathon
+
+Tiru also worked on a Google Gen AI Academy hackathon.
+
+Important timeline discussed:
+
+* Team formation
+* Prototype submission
+* Prototype evaluation
+* Top 100
+* Prototype refinement
+* Final evaluation
+* Top 10
+* Virtual finale
+* Winner announcement
+* Elite Club / graduation
+
+There was also work around:
+
+* Google Cloud credits
+* Free-tier architecture
+* Groq
+* FastAPI
+* React/Vite
+* Render
+* Vercel/Netlify
+* Firebase
+
+The practical goal was to avoid unnecessary cloud costs when a free architecture could accomplish the prototype.
+
+---
+
+# 13. Content Creation
+
+**Personal brand:** Tiru Builds
+**Handle:** @lockintiru
+
+Content direction:
+
+* AI building
+* RealMind AI journey
+* Project building
+* Developer journey
+* Hackathons
+* AI engineering
+* Startup/product experiments
+* Technical learning
+* Build-in-public content
+
+The philosophy discussed was that generic/faceless content is difficult to differentiate.
+
+A stronger strategy is:
+
+**Document real projects + real progress + real problems + real builds.**
+
+Tiru Builds can therefore become the public layer of the technical journey.
+
+---
+
+# 14. Business / Agency Experiments
+
+Tiru has explored selling software/AI solutions to local businesses.
+
+Target businesses discussed:
+
+* Gyms
+* Restaurants
+* Other local businesses
+
+The approach:
+
+**Find real business pain → build a focused solution → demo it → get feedback → convert to paying customer.**
+
+---
+
+# 15. Gym SaaS Idea
+
+A detailed gym-management SaaS concept was explored.
+
+### Problems
+
+* Check-in chaos
+* Equipment availability
+* Workout plans on paper
+* Progress tracking
+* Trainer assignment
+* Membership renewals
+
+### Main hook
+
+**“One Button → Trainer Phone Rings”**
+
+A gym member presses a button and their assigned trainer is immediately alerted.
+
+### Other features
+
+* Real-time class availability
+* Workout/progress tracking
+* Membership renewal reminders
+* WhatsApp/SMS communication
+* Trainer dashboard
+* Trainer performance tracking
+* Equipment maintenance requests
+
+### Example pricing explored
+
+* Small gym: ₹1,499/month
+* Medium gym: ₹3,499/month
+* Large gym: ₹8,999/month + custom
+
+The suggested validation path was to approach one gym owner, demonstrate the core feature, collect feedback, and try to convert the first paying customer.
+
+---
+
+# 16. Restaurant AI SaaS
+
+Another business idea explored was AI/software for restaurants.
+
+Pricing models discussed included:
+
+* ₹999/month
+* ₹2,999/month
+* ₹9,999/month Enterprise
+
+There was also discussion about per-order pricing.
+
+Important conclusion from the exploration:
+
+The restaurant software market is already crowded, so differentiation and a strong painkiller feature are necessary.
+
+---
+
+# 17. Career Direction
+
+Current long-term career identity:
+
+**AI Engineer + AI Product Builder + Founder mindset**
+
+Potential areas:
+
+* AI Engineering
+* LLM Engineering
+* AI Agents
+* Generative AI
+* Computer Vision
+* AI infrastructure
+* Full-stack AI applications
+* AI startups
+* Research/internships
+* Founding-engineer type roles
+
+The goal is to become someone who can go from:
+
+**Idea → Architecture → Code → AI Model → Product → Deployment → Users**
+
+---
+
+# 18. Learning Philosophy
+
+Tiru's learning direction has evolved from trying to learn many technologies toward becoming stronger through actual building.
+
+A particularly important long-term learning commitment is:
+
+**Deeply understand LLMs.**
+
+Not just:
+
+“Call an API.”
+
+But understand:
+
+* How LLMs work
+* Transformers
+* Attention
+* Tokenization
+* Embeddings
+* Training
+* Fine-tuning
+* Inference
+* RAG
+* Tool calling
+* Agents
+* Context windows
+* Evaluation
+* Model serving
+* AI infrastructure
+
+The objective is to eventually be able to build AI systems from a deeper technical understanding.
+
+---
+
+# 19. Development Journey
+
+Tiru's development journey has included:
+
+* Python
+* JavaScript
+* Full-stack development
+* React
+* Backend development
+* APIs
+* Firebase
+* Cloud deployment
+* AI APIs
+* Local LLMs
+* Computer vision
+* Autonomous agents
+* Product development
+
+There have been periods of intense learning, experimentation, burnout, resets, and rebuilding.
+
+The current direction is more focused around **AI + products + execution**.
+
+---
+
+# 20. GitHub / Engineering Experience
+
+Projects and repositories discussed include:
+
+* `civic-iq`
+* `civic-iq-frontend`
+* AI/agent projects
+* JARVIS-related code
+* ULTRON-related code
+
+Tiru has dealt with real engineering issues including:
+
+* GitHub secret scanning
+* Service-account credential leaks
+* Firebase rules
+* API keys
+* Vite configuration
+* npm dependency issues
+* Render deployment
+* Backend configuration
+* Environment variables
+* Cloud deployment
+* OAuth setup
+
+These are practical engineering experiences beyond simply following tutorials.
+
+---
+
+# 21. Deployment Experience
+
+Platforms worked with:
+
+* Vercel
+* Netlify
+* Render
+* Firebase
+* Google Cloud
+
+Tiru has worked through actual deployment/debugging problems such as:
+
+* Build-directory issues
+* Missing `package.json`
+* Node/Vite problems
+* Dependency resolution
+* Free-tier limitations
+* API configuration
+* Cloud credentials
+* Environment variables
+
+---
+
+# 22. Security / Developer Hygiene Lessons
+
+A major real-world GitHub issue occurred when a Google Cloud service-account credential file was accidentally committed.
+
+GitHub secret scanning blocked the push.
+
+This led to learning around:
+
+* Never committing secrets
+* `.gitignore`
+* Environment variables
+* API-key management
+* Service-account credentials
+* Git history cleanup
+* GitHub secret scanning
+
+This is valuable practical engineering experience.
+
+---
+
+# 23. Personal Development Goals
+
+Beyond technology, Tiru has previously worked toward:
+
+* Body transformation
+* Reducing body fat
+* Fitness/gym
+* Better appearance/glow-up
+* Fighting skills
+* Discipline
+* Better daily routine
+* Personal reset
+* Consistency
+
+The broader theme has been:
+
+**Become stronger physically + technically + professionally.**
+
+---
+
+# 24. Previous Financial Ambition
+
+A previous explicit target was:
+
+**₹50 lakh goal by March 2026**
+
+That timeline has now passed, so it should be treated as a **previous ambition**, not a current deadline.
+
+The underlying ambition remains:
+
+**Build valuable skills/products/businesses that can generate significant income.**
+
+---
+
+# 25. Personal Brand Positioning
+
+Potential positioning:
+
+> **Tiru Venkatesh — AI Engineer & Builder**
+
+or
+
+> **Tiru Builds — Building AI products, agents and real-world software.**
+
+The strongest identity is not merely:
+
+“CSE student.”
+
+It is:
+
+**CSE student who actively builds AI systems and products.**
+
+---
+
+# 26. Current Project Ecosystem
+
+The projects can be viewed as one ecosystem:
+
+### Tiru Builds
+
+Public personal brand.
+
+↓
+
+### RealMind AI / Virtual Factory AI
+
+AI product/startup direction.
+
+↓
+
+### ULTRON
+
+Autonomous computer-use agent.
+
+↓
+
+### JARVIS
+
+Personal local AI assistant + tool execution.
+
+↓
+
+### CivicIQ
+
+AI applied to civic intelligence.
+
+↓
+
+### IBVAP
+
+AI + computer vision applied to border surveillance.
+
+↓
+
+### Future
+
+Deeper LLM systems + agents + AI infrastructure + products.
+
+---
+
+# 27. Strongest Technical Story
+
+The strongest story across the projects is:
+
+**“I don't just use AI APIs. I build systems around AI.”**
+
+Examples:
+
+* CivicIQ → AI decision-support system
+* IBVAP → computer-vision surveillance analytics
+* ULTRON → autonomous computer-use agent
+* JARVIS → local LLM + tools + personal knowledge
+* RealMind AI → AI infrastructure/product direction
+
+This creates a coherent AI-engineering portfolio.
+
+---
+
+# 28. Current Priorities
+
+Current priority stack should broadly revolve around:
+
+1. **AI engineering**
+2. **Deep LLM learning**
+3. **Building serious AI projects**
+4. **Hackathons / SIH**
+5. **Internships / career opportunities**
+6. **Tiru Builds content**
+7. **Product/business experimentation**
+8. **Strong GitHub + portfolio**
+9. **Personal discipline and consistency**
+
+---
+
+# 29. Working Style / Ambition
+
+Tiru tends to prefer:
+
+* Practical execution
+* Building quickly
+* Strong visual presentation
+* Premium-looking UI
+* Real working prototypes
+* Short/direct answers when planning
+* Strong project positioning
+* Automation
+* Free/low-cost infrastructure when possible
+* Using AI as an actual engineering component
+* Turning ideas into demonstrable products
+
+The preferred mindset is:
+
+**“Don't just learn it. Build it.”**
+
+---
+
+# 30. One-Line Profile
+
+**M V V Tiru Venkatesh is a B.Tech CSE student and AI-focused builder creating LLM applications, autonomous agents, computer-vision systems and AI-powered web products under Tiru Builds, while pursuing hackathons, internships, product opportunities and deeper AI/LLM engineering expertise.**
+
+---
+
+# 31. Short Professional Bio
+
+**Tiru Venkatesh is a B.Tech Computer Science student at JNTU Narasaraopeta and an AI-focused builder behind Tiru Builds. He develops AI-powered products and autonomous systems across LLMs, computer vision, agentic automation and full-stack development. His projects include CivicIQ, an AI-powered civic complaint intelligence platform; ULTRON, an autonomous desktop agent using vision and tool calling; JARVIS, a local Ollama-based AI assistant with Gmail and automation capabilities; and IBVAP, an intelligent border video analytics platform. He is interested in AI engineering, LLMs, agents, computer vision, startups, hackathons and building real-world AI products.**
+
+---
+
+# 32. Tiru's Builder Philosophy
+
+**Learn deeply.
+Build aggressively.
+Ship publicly.
+Solve real problems.
+Turn projects into opportunities.
+Keep improving.**
+
+---
+
+# 33. Master Identity
+
+### TIRU VENKATESH
+
+**Student:** B.Tech CSE
+**Role:** AI Engineer / Builder
+**Brand:** Tiru Builds
+**Handle:** @lockintiru
+**Focus:** AI + LLMs + Agents + Computer Vision + Products
+**Projects:** CivicIQ • RealMind AI • ULTRON • JARVIS • IBVAP
+**Interests:** AI Engineering • LLMs • Agents • Startups • Hackathons • Full Stack
+**Career Goal:** Become a highly capable AI Engineer and AI Product Builder.
+
+**Core motto:**
+
+> BUILD. SHIP. LEARN. REPEAT.
