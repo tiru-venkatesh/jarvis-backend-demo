@@ -1,0 +1,19 @@
+Dear Professor,
+
+I’m Tiru Venkatesh, a **second-year B.Tech CSE student at JNTU Narasaraopeta**, with a strong focus on AI engineering, LLMs, multimodal AI, and autonomous agents.
+
+I’ve been actively building AI systems end-to-end, with an emphasis on turning ideas into working, deployable products. My recent work includes **CivicIQ**, an AI-powered civic-complaint triage platform using RAG and a multi-agent pipeline, and an **autonomous desktop agent** that combines screenshots, vision models, reasoning, and an action loop to interact with a computer.
+
+I’m now looking to go deeper into **research-oriented AI**, particularly in LLMs, agentic systems, multimodal intelligence, and autonomous AI. I would be very grateful for an opportunity to contribute to your research or ongoing projects and learn under your guidance. I’m comfortable learning independently, exploring unfamiliar technical areas, and taking ownership of implementation.
+
+Portfolio: https://tiru-venkatesh.vercel.app
+GitHub: https://github.com/tiru-venkatesh
+
+I’ve attached my resume for additional context. If you feel my background could be relevant to your work, I would greatly appreciate the opportunity for a brief conversation about a possible research or internship opportunity.
+
+Thank you for your time and consideration.
+
+Best regards,
+**Tiru Venkatesh**
+B.Tech CSE — Second Year
+JNTU Narasaraopeta
