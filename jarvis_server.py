@@ -32,6 +32,7 @@ one conversation in memory and isn't meant to be exposed to the internet.
 
 import json
 import os
+import secrets
 import uuid
 from functools import wraps
 
@@ -47,22 +48,44 @@ memory_store.init_db()
 app = Flask(__name__)
 CORS(app)  # allow the browser (file:// or a local dev server) to call this API
 
-# --- Single-user mode (no auth) -------------------------------------------
-# AURA is a personal, single-user tool: one person, one machine, no login
-# system. Every request runs as the same fixed local user. AURA_USER lets
-# you rename that account if you want (e.g. to keep memory_store rows under
-# a specific name); it defaults to "local" and matches jarvis.py's
-# CLI_USER_ID so the CLI and the server share the same memory/knowledge.
+# --- Single-user mode (shared-secret auth) --------------------------------
+# AURA is a personal, single-user tool -- there's no per-user login, but this
+# is deployed on a public URL (Render), so it still needs *something* between
+# it and the open internet. Instead of Supabase, this uses one shared secret:
+# set AURA_API_KEY in your environment (locally via .env, in production via
+# Render's Environment tab) and have the frontend send it as
+# "Authorization: Bearer <key>" on every request.
+#
+# If AURA_API_KEY isn't set, every route refuses with a 500 rather than
+# silently running open -- a fresh deploy should never be reachable by anyone
+# who finds the URL. AURA_USER controls which memory_store account the single
+# authenticated caller resolves to; it defaults to "local" and matches
+# jarvis.py's CLI_USER_ID so the CLI and server share the same memory/knowledge.
+AURA_API_KEY = os.environ.get("AURA_API_KEY", "").strip()
 LOCAL_USER = os.environ.get("AURA_USER", "local").strip() or "local"
 
 
 def require_auth(f):
-    """Attaches a fixed request.user_id / request.user_email to every
-    request. Kept as a decorator (rather than inlining LOCAL_USER in each
-    route) so reintroducing real multi-user auth later only means editing
-    this one function."""
+    """Checks the shared-secret API key and attaches a fixed
+    request.user_id / request.user_email. Every route that touches user
+    data (chat, confirm, reset, memories, plans) needs this."""
     @wraps(f)
     def wrapper(*args, **kwargs):
+        if not AURA_API_KEY:
+            return jsonify({
+                "type": "error",
+                "text": "Server auth is not configured (AURA_API_KEY missing). "
+                        "Set it before this server is reachable from the internet.",
+            }), 500
+
+        auth_header = request.headers.get("Authorization", "")
+        if not auth_header.startswith("Bearer "):
+            return jsonify({"type": "error", "text": "Missing or invalid Authorization header."}), 401
+        token = auth_header[len("Bearer "):].strip()
+
+        if not secrets.compare_digest(token, AURA_API_KEY):
+            return jsonify({"type": "error", "text": "Invalid API key."}), 401
+
         request.user_id = LOCAL_USER
         request.user_email = f"{LOCAL_USER}@local.dev"
         return f(*args, **kwargs)
@@ -580,7 +603,13 @@ def set_permissions():
 
 @app.route("/api/health", methods=["GET"])
 def health():
-    return jsonify({"type": "ok", "model": core.MODEL, "groq_key_set": bool(core.GROQ_API_KEY), "user": LOCAL_USER})
+    return jsonify({
+        "type": "ok",
+        "model": core.MODEL,
+        "groq_key_set": bool(core.GROQ_API_KEY),
+        "auth_configured": bool(AURA_API_KEY),
+        "user": LOCAL_USER,
+    })
 
 
 # Serve the command-center dashboard from the same origin as the API, so the
@@ -594,7 +623,11 @@ def dashboard():
 if __name__ == "__main__":
     core.check_groq_setup()
     print(f"Jarvis server -- model: {core.MODEL}")
-    print(f"Single-user mode: all requests run as '{LOCAL_USER}'. No login required.")
+    if AURA_API_KEY:
+        print(f"Single-user mode: all requests run as '{LOCAL_USER}'. API key required.")
+    else:
+        print("WARNING: AURA_API_KEY is not set -- every API call will return 500.")
+        print("         Set AURA_API_KEY before this server is reachable from the internet.")
     print("\nOpen the command center:  http://localhost:8787/")
     print("API base:                 http://localhost:8787/api\n")
     app.run(host="127.0.0.1", port=8787, debug=False)
