@@ -641,6 +641,76 @@ def check_groq_setup():
         sys.exit(1)
 
 
+def _group_into_turns(messages):
+    """Group a message list into atomic units: a lone user/assistant/tool
+    message, or an assistant message with tool_calls together with all of
+    its matching tool-result messages. Trimming has to cut at these
+    boundaries -- cutting in the middle of a unit would send Groq a tool
+    result with no matching tool_call (or vice versa), which the API
+    rejects outright rather than just running with less context."""
+    units = []
+    i = 0
+    while i < len(messages):
+        m = messages[i]
+        if m.get("role") == "assistant" and m.get("tool_calls"):
+            call_ids = {c.get("id") for c in m["tool_calls"]}
+            j = i + 1
+            unit = [m]
+            while j < len(messages) and messages[j].get("role") == "tool" and messages[j].get("tool_call_id") in call_ids:
+                unit.append(messages[j])
+                j += 1
+            units.append(unit)
+            i = j
+        else:
+            units.append([m])
+            i += 1
+    return units
+
+
+def trim_for_budget(messages, max_chars=22000):
+    """The one place request size gets capped before it reaches Groq.
+
+    Why this exists: persistent memory (memory_store.py) means a session
+    can resume with 30-40+ prior messages, and a long-running chat grows
+    further from there. Groq's on_demand tier caps at 8000 tokens/minute
+    -- a real conversation blows past that in normal use, not because of
+    anything unusual in that turn's message, just because history has
+    piled up. That showed up as: 'Request too large ... Requested 8216,
+    Limit 8000'.
+
+    messages[0] is always the system prompt -- kept in full, always (it
+    carries the tool instructions and the user's remembered facts, both
+    of which matter every turn). From the rest, keep as many of the most
+    recent *complete* units (see _group_into_turns) as fit under
+    max_chars. Character count is a cheap proxy for tokens (~4 chars per
+    token for English) -- good enough to stay clear of the limit without
+    pulling in a real tokenizer dependency.
+
+    Important: this only affects what gets *sent* to Groq this turn. The
+    full conversation still lives in memory_store (SQLite) and in the
+    caller's in-memory `messages` list untouched -- trimming returns a
+    new list, it never mutates or drops anything from what's stored."""
+    if not messages:
+        return messages
+    system = messages[0]
+    units = _group_into_turns(messages[1:])
+
+    kept = []
+    total = len(system.get("content") or "")
+    for unit in reversed(units):
+        unit_chars = sum(len(m.get("content") or "") for m in unit)
+        if kept and total + unit_chars > max_chars:
+            break
+        kept.append(unit)
+        total += unit_chars
+    kept.reverse()
+
+    flat = [system]
+    for unit in kept:
+        flat.extend(unit)
+    return flat
+
+
 def stream_chat(messages, tools=None):
     """Send the conversation to Groq (OpenAI-compatible chat completions
     endpoint). Non-streaming, since we need the full tool_calls payload
@@ -651,7 +721,7 @@ def stream_chat(messages, tools=None):
     }
     payload = {
         "model": MODEL,
-        "messages": messages,
+        "messages": trim_for_budget(messages),
     }
     if tools:
         payload["tools"] = tools

@@ -1,19 +1,21 @@
 Dear Professor,
 
-I’m Tiru Venkatesh, a **second-year B.Tech CSE student at JNTU Narasaraopeta**, with a strong focus on AI engineering, LLMs, multimodal AI, and autonomous agents.
+I am Tiru Venkatesh, a second-year B.Tech CSE student at JNTU Narasaraopeta, with a strong interest in Artificial Intelligence, Large Language Models, multimodal systems, and autonomous agents.
 
-I’ve been actively building AI systems end-to-end, with an emphasis on turning ideas into working, deployable products. My recent work includes **CivicIQ**, an AI-powered civic-complaint triage platform using RAG and a multi-agent pipeline, and an **autonomous desktop agent** that combines screenshots, vision models, reasoning, and an action loop to interact with a computer.
+I have been independently developing and deploying AI systems, with a particular focus on LLM-based applications and agentic architectures. My recent work includes **CivicIQ**, an AI-driven civic intelligence platform that combines RAG, multi-agent workflows, and intelligent complaint analysis, as well as an **autonomous desktop agent** that integrates visual perception, reasoning, and computer interaction into an iterative action loop.
 
-I’m now looking to go deeper into **research-oriented AI**, particularly in LLMs, agentic systems, multimodal intelligence, and autonomous AI. I would be very grateful for an opportunity to contribute to your research or ongoing projects and learn under your guidance. I’m comfortable learning independently, exploring unfamiliar technical areas, and taking ownership of implementation.
+Through these projects, I have developed practical experience in designing AI pipelines, integrating models, working with retrieval and agent architectures, and taking systems from experimentation to deployment. I am now looking to strengthen this foundation through **research-oriented work** and gain exposure to rigorous problem formulation, experimentation, and evaluation.
+
+I would be grateful for an opportunity to contribute to your research group or ongoing projects, whether through a research internship, project collaboration, or an opportunity to assist with ongoing work. I am willing to invest the time required to learn the relevant literature, tools, and methodologies and contribute meaningfully to the work.
 
 Portfolio: https://tiru-venkatesh.vercel.app
 GitHub: https://github.com/tiru-venkatesh
 
-I’ve attached my resume for additional context. If you feel my background could be relevant to your work, I would greatly appreciate the opportunity for a brief conversation about a possible research or internship opportunity.
+I have attached my resume for your reference. If my background aligns with your research interests, I would sincerely appreciate an opportunity to discuss whether there may be a suitable way for me to contribute.
 
 Thank you for your time and consideration.
 
 Best regards,
 **Tiru Venkatesh**
-B.Tech CSE — Second Year
+B.Tech CSE, Second Year
 JNTU Narasaraopeta

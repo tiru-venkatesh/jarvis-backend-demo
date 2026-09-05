@@ -176,7 +176,7 @@ def groq_chat(msgs):
         "Authorization": f"Bearer {core.GROQ_API_KEY}",
         "Content-Type": "application/json",
     }
-    payload = {"model": core.MODEL, "messages": msgs, "tools": core.ALL_TOOLS}
+    payload = {"model": core.MODEL, "messages": core.trim_for_budget(msgs), "tools": core.ALL_TOOLS}
     resp = requests.post(core.GROQ_URL, headers=headers, json=payload, timeout=60)
     resp.raise_for_status()
     data = resp.json()
