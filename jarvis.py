@@ -185,7 +185,7 @@ def get_gmail_service():
                 )
             flow = InstalledAppFlow.from_client_secrets_file(CREDENTIALS_FILE, SCOPES)
             creds = flow.run_local_server(port=0)
-                with open(TOKEN_WRITE_PATH, "w") as f:
+        with open(TOKEN_WRITE_PATH, "w") as f:
             f.write(creds.to_json())
 
     return build("gmail", "v1", credentials=creds)
