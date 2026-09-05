@@ -35,7 +35,6 @@ import os
 import uuid
 from functools import wraps
 
-import jwt
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 import requests
@@ -48,68 +47,24 @@ memory_store.init_db()
 app = Flask(__name__)
 CORS(app)  # allow the browser (file:// or a local dev server) to call this API
 
-# --- Multi-user auth (Supabase) -----------------------------------------
-# The frontend authenticates the user against Supabase directly and sends
-# the resulting access token as "Authorization: Bearer <token>" on every
-# request. We verify it here with the project's JWT secret (Settings ->
-# API -> JWT Secret in the Supabase dashboard) rather than running our own
-# login system.
-SUPABASE_JWT_SECRET = os.environ.get("SUPABASE_JWT_SECRET", "")
-
-# --- Local dev mode (auth bypass) ----------------------------------------
-# The whole API is behind require_auth, which needs a real Supabase JWT. That
-# makes local testing of the dashboard painful (you'd have to mint a token by
-# hand). AURA_DEV_USER lets you run everything locally as a single fixed user
-# with no token at all -- set AURA_DEV_USER=local and the dashboard, the CLI
-# (jarvis.py uses "local" too), and the knowledge owner all resolve to the
-# same account.
-#
-# This is deliberately double-gated so it can NEVER silently weaken a real
-# deployment: it activates only when AURA_DEV_USER is explicitly set AND no
-# SUPABASE_JWT_SECRET is configured. Production always sets the JWT secret, so
-# DEV_MODE is always False there even if AURA_DEV_USER leaked into the env.
-DEV_USER = os.environ.get("AURA_DEV_USER", "").strip()
-DEV_MODE = bool(DEV_USER) and not SUPABASE_JWT_SECRET
+# --- Single-user mode (no auth) -------------------------------------------
+# AURA is a personal, single-user tool: one person, one machine, no login
+# system. Every request runs as the same fixed local user. AURA_USER lets
+# you rename that account if you want (e.g. to keep memory_store rows under
+# a specific name); it defaults to "local" and matches jarvis.py's
+# CLI_USER_ID so the CLI and the server share the same memory/knowledge.
+LOCAL_USER = os.environ.get("AURA_USER", "local").strip() or "local"
 
 
 def require_auth(f):
-    """Verifies the Supabase access token and attaches request.user_id /
-    request.user_email. Every route that touches a user's own data (chat,
-    confirm, reset) needs this -- it's what makes AURA multi-tenant instead
-    of one shared Jarvis for whoever hits the API first."""
+    """Attaches a fixed request.user_id / request.user_email to every
+    request. Kept as a decorator (rather than inlining LOCAL_USER in each
+    route) so reintroducing real multi-user auth later only means editing
+    this one function."""
     @wraps(f)
     def wrapper(*args, **kwargs):
-        if DEV_MODE:
-            # Local, single-user, no token. Only reachable when explicitly
-            # opted in via AURA_DEV_USER and no JWT secret is set (see above).
-            request.user_id = DEV_USER
-            request.user_email = f"{DEV_USER}@local.dev"
-            return f(*args, **kwargs)
-
-        if not SUPABASE_JWT_SECRET:
-            return jsonify({
-                "type": "error",
-                "text": "Server auth is not configured (SUPABASE_JWT_SECRET missing).",
-            }), 500
-
-        auth_header = request.headers.get("Authorization", "")
-        if not auth_header.startswith("Bearer "):
-            return jsonify({"type": "error", "text": "Missing or invalid Authorization header."}), 401
-        token = auth_header[len("Bearer "):].strip()
-
-        try:
-            payload = jwt.decode(
-                token, SUPABASE_JWT_SECRET, algorithms=["HS256"], audience="authenticated"
-            )
-        except jwt.PyJWTError as e:
-            return jsonify({"type": "error", "text": f"Invalid or expired session: {e}"}), 401
-
-        user_id = payload.get("sub")
-        if not user_id:
-            return jsonify({"type": "error", "text": "Token missing user id."}), 401
-
-        request.user_id = user_id
-        request.user_email = payload.get("email")
+        request.user_id = LOCAL_USER
+        request.user_email = f"{LOCAL_USER}@local.dev"
         return f(*args, **kwargs)
     return wrapper
 
@@ -625,7 +580,7 @@ def set_permissions():
 
 @app.route("/api/health", methods=["GET"])
 def health():
-    return jsonify({"type": "ok", "model": core.MODEL, "groq_key_set": bool(core.GROQ_API_KEY), "dev_mode": DEV_MODE})
+    return jsonify({"type": "ok", "model": core.MODEL, "groq_key_set": bool(core.GROQ_API_KEY), "user": LOCAL_USER})
 
 
 # Serve the command-center dashboard from the same origin as the API, so the
@@ -639,12 +594,7 @@ def dashboard():
 if __name__ == "__main__":
     core.check_groq_setup()
     print(f"Jarvis server -- model: {core.MODEL}")
-    if DEV_MODE:
-        print(f"DEV MODE: auth bypassed, all requests run as user '{DEV_USER}'.")
-        print("          (only because AURA_DEV_USER is set and no SUPABASE_JWT_SECRET.)")
-    elif not SUPABASE_JWT_SECRET:
-        print("WARNING: SUPABASE_JWT_SECRET not set and AURA_DEV_USER not set --")
-        print("         every API call will return 500. Set AURA_DEV_USER=local for local use.")
+    print(f"Single-user mode: all requests run as '{LOCAL_USER}'. No login required.")
     print("\nOpen the command center:  http://localhost:8787/")
     print("API base:                 http://localhost:8787/api\n")
     app.run(host="127.0.0.1", port=8787, debug=False)

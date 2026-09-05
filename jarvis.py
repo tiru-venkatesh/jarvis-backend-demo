@@ -831,7 +831,7 @@ def handle_tool_calls(messages, tool_calls):
         memory_store.append_message(CLI_USER_ID, "assistant", followup)
 
 
-CLI_USER_ID = "local"  # single-user CLI mode; the server assigns real Supabase user ids
+CLI_USER_ID = "local"  # single-user CLI mode; jarvis_server.py uses the same fixed user id
 
 
 def main():
