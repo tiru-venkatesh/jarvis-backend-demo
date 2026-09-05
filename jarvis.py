@@ -128,9 +128,30 @@ def resume_available() -> bool:
 
 
 # --- Gmail setup -------------------------------------------------------
+# Locally these sit next to jarvis.py. On Render they're uploaded as
+# Secret Files instead, which get mounted read-only at /etc/secrets/ --
+# so prefer that path when it exists, and let an env var override either
+# path explicitly if you ever need to.
 SCOPES = ["https://www.googleapis.com/auth/gmail.send"]
-CREDENTIALS_FILE = "credentials.json"
-TOKEN_FILE = "token.json"
+
+
+def _resolve_secret_path(env_var, filename):
+    override = os.environ.get(env_var)
+    if override:
+        return override
+    render_path = os.path.join("/etc/secrets", filename)
+    if os.path.exists(render_path):
+        return render_path
+    return filename
+
+
+CREDENTIALS_FILE = _resolve_secret_path("GMAIL_CREDENTIALS_FILE", "credentials.json")
+TOKEN_FILE = _resolve_secret_path("GMAIL_TOKEN_FILE", "token.json")
+# Refreshed tokens get written here instead of back over TOKEN_FILE, since
+# /etc/secrets is read-only on Render. TOKEN_FILE (which still has a valid
+# refresh_token) gets re-read and re-refreshed on every cold start, so
+# nothing is lost by not persisting the refreshed copy.
+TOKEN_WRITE_PATH = os.environ.get("GMAIL_TOKEN_WRITE_FILE", "/tmp/gmail_token.json")
 
 
 def get_gmail_service():
@@ -164,7 +185,7 @@ def get_gmail_service():
                 )
             flow = InstalledAppFlow.from_client_secrets_file(CREDENTIALS_FILE, SCOPES)
             creds = flow.run_local_server(port=0)
-        with open(TOKEN_FILE, "w") as f:
+                with open(TOKEN_WRITE_PATH, "w") as f:
             f.write(creds.to_json())
 
     return build("gmail", "v1", credentials=creds)
