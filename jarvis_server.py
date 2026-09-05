@@ -66,31 +66,15 @@ LOCAL_USER = os.environ.get("AURA_USER", "local").strip() or "local"
 
 
 def require_auth(f):
-    """Checks the shared-secret API key and attaches a fixed
-    request.user_id / request.user_email. Every route that touches user
-    data (chat, confirm, reset, memories, plans) needs this."""
+    """No-op auth: every request is treated as the single local user.
+    Kept as a decorator (rather than deleting it from every route) so the
+    routes below don't need to change at all."""
     @wraps(f)
     def wrapper(*args, **kwargs):
-        if not AURA_API_KEY:
-            return jsonify({
-                "type": "error",
-                "text": "Server auth is not configured (AURA_API_KEY missing). "
-                        "Set it before this server is reachable from the internet.",
-            }), 500
-
-        auth_header = request.headers.get("Authorization", "")
-        if not auth_header.startswith("Bearer "):
-            return jsonify({"type": "error", "text": "Missing or invalid Authorization header."}), 401
-        token = auth_header[len("Bearer "):].strip()
-
-        if not secrets.compare_digest(token, AURA_API_KEY):
-            return jsonify({"type": "error", "text": "Invalid API key."}), 401
-
         request.user_id = LOCAL_USER
         request.user_email = f"{LOCAL_USER}@local.dev"
         return f(*args, **kwargs)
     return wrapper
-
 
 # --- Per-user session state ----------------------------------------------
 # `messages` now hydrates from memory_store (SQLite) on first touch per
