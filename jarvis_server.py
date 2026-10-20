@@ -30,9 +30,12 @@ Note: this is a small local dev server for a single user (you) -- it holds
 one conversation in memory and isn't meant to be exposed to the internet.
 """
 
+import hmac
 import json
 import os
+import re
 import secrets
+import threading
 import uuid
 from functools import wraps
 
@@ -46,7 +49,11 @@ import memory_store
 memory_store.init_db()
 
 app = Flask(__name__)
-CORS(app)  # allow the browser (file:// or a local dev server) to call this API
+# Optional: restrict browser origins, e.g.
+#   AURA_ALLOWED_ORIGINS="https://jarvis-backend-demo.onrender.com,http://localhost:8787"
+# Unset = any origin may *call* the API, but every route still needs the Bearer key.
+_origins = [o.strip() for o in os.environ.get("AURA_ALLOWED_ORIGINS", "").split(",") if o.strip()]
+CORS(app, origins=_origins or "*")
 
 # --- Single-user mode (shared-secret auth) --------------------------------
 # AURA is a personal, single-user tool -- there's no per-user login, but this
@@ -66,11 +73,18 @@ LOCAL_USER = os.environ.get("AURA_USER", "local").strip() or "local"
 
 
 def require_auth(f):
-    """No-op auth: every request is treated as the single local user.
-    Kept as a decorator (rather than deleting it from every route) so the
-    routes below don't need to change at all."""
+    """Shared-secret auth: every request must send
+    'Authorization: Bearer <AURA_API_KEY>'. If AURA_API_KEY isn't configured
+    the route refuses (500) rather than running open to the internet."""
     @wraps(f)
     def wrapper(*args, **kwargs):
+        if not AURA_API_KEY:
+            return jsonify({"type": "error",
+                            "text": "Server misconfigured: AURA_API_KEY is not set."}), 500
+        header = request.headers.get("Authorization", "")
+        token = header[7:].strip() if header.lower().startswith("bearer ") else ""
+        if not hmac.compare_digest(token.encode(), AURA_API_KEY.encode()):
+            return jsonify({"type": "error", "text": "Unauthorized."}), 401
         request.user_id = LOCAL_USER
         request.user_email = f"{LOCAL_USER}@local.dev"
         return f(*args, **kwargs)
@@ -226,7 +240,76 @@ def _build_bulk_preview(path, subject, body):
     return {"items": items, "attach_path": attach_path}, None
 
 
+# --- direct (no-confirmation) bulk sending ----------------------------
+# By default a bulk command sends straight away: typing the command IS the
+# approval. Set AURA_BULK_AUTO_SEND=0 on the server to bring back the
+# Send/Cancel confirmation card.
+BULK_AUTO_SEND = os.environ.get("AURA_BULK_AUTO_SEND", "1").strip() != "0"
+BULK_SYNC_LIMIT = 4   # bigger batches run in a background thread (web request timeouts)
+
+_BULK_FILLER = {
+    "send", "the", "email", "emails", "mail", "mails", "to", "for", "with", "please",
+    "now", "all", "run", "do", "bulk", "role", "roles", "file", "csv", "using", "use",
+    "on", "my", "a", "it", "and", "this", "that", "from", "of",
+}
+
+
+def _resolve_recipient_file(token):
+    """'test', 'test.csv', 'test.ccsv' -> an existing file name, else the
+    cleaned guess."""
+    token = re.sub(r"\.c+s+v+$", ".csv", token.strip(" \t\"'`,."), flags=re.I)
+    candidates = [token]
+    if not os.path.splitext(token)[1]:
+        candidates += [token + ".csv", token + ".txt"]
+    for c in candidates:
+        if os.path.isfile(c):
+            return c
+    return candidates[1] if len(candidates) > 1 else token
+
+
+def _normalize_bulk_command(text):
+    """Turn natural phrasings like 'bulk role test', 'send the email
+    /bulk-role test.ccsv' or 'bulk-role recipients_final' into the exact slash
+    command '/bulk-role <file>'. Anything else is returned unchanged."""
+    m = re.search(r"(?<![a-z])bulk[\s_-]*role(?![a-z])(.*)$", text, flags=re.I | re.S)
+    if not m:
+        return text
+    tokens = re.findall(r"[\w./\\-]+", m.group(1))
+    names = [t for t in tokens if t.lower().strip(".") not in _BULK_FILLER]
+    if not names:
+        return "/bulk-role"          # -> usage message
+    return "/bulk-role " + _resolve_recipient_file(names[-1])
+
+
+def _send_items(user_id, sess, items, attach_path):
+    sent, failed = 0, []
+    for item in items:
+        try:
+            core.send_gmail(item["to"], item["subject"], item["body"], attach_path=attach_path)
+            sent += 1
+        except Exception as e:
+            failed.append(f"{item['to']}: {e}")
+    summary = f"Bulk send done. Sent {sent}/{len(items)}."
+    if failed:
+        summary += " Failed -- " + "; ".join(failed)
+    # Persisted as an assistant turn purely for the audit trail.
+    _add_message(user_id, sess, "assistant", summary)
+    return summary
+
+
 def _make_bulk_confirm_response(sess, data, kind):
+    if BULK_AUTO_SEND:
+        items, attach = data["items"], data["attach_path"]
+        uid = request.user_id
+        attach_note = " with your resume attached" if attach else " (no resume attached)"
+        role_note = "role-matched " if kind == "bulk-role" else ""
+        if len(items) <= BULK_SYNC_LIMIT:
+            return jsonify({"type": "text", "text": _send_items(uid, sess, items, attach)})
+        threading.Thread(target=_send_items, args=(uid, sess, items, attach), daemon=True).start()
+        return jsonify({"type": "text", "text": (
+            f"Sending {len(items)} {role_note}emails{attach_note} now. "
+            "I'll log the result in this conversation -- ask 'bulk send status' in a minute.")})
+
     pending_id = uuid.uuid4().hex
     sess["pending_sends"][pending_id] = {
         "type": "bulk",
@@ -266,6 +349,7 @@ def chat():
     if not user_text:
         return jsonify({"type": "error", "text": "Empty message."}), 400
 
+    user_text = _normalize_bulk_command(user_text)
     lower = user_text.lower()
 
     # /bulk-role <recipients.csv> -- must be checked before /bulk, since
@@ -450,24 +534,7 @@ def confirm():
         if not approved:
             return jsonify({"type": "text", "text": "Bulk send cancelled."})
 
-        sent, failed = 0, []
-        for item in pending["items"]:
-            try:
-                core.send_gmail(
-                    item["to"], item["subject"], item["body"],
-                    attach_path=pending["attach_path"],
-                )
-                sent += 1
-            except Exception as e:
-                failed.append(f"{item['to']}: {e}")
-
-        summary = f"Bulk send done. Sent {sent}/{len(pending['items'])}."
-        if failed:
-            summary += " Failed -- " + "; ".join(failed)
-        # Persisted as an assistant turn purely for the audit trail -- a
-        # bulk send used to leave zero trace in the conversation, which
-        # made "what did I already send, and to whom" unanswerable later.
-        _add_message(request.user_id, sess, "assistant", summary)
+        summary = _send_items(request.user_id, sess, pending["items"], pending["attach_path"])
         return jsonify({"type": "text", "text": summary})
 
     args = pending["args"]

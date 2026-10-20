@@ -47,7 +47,7 @@ python jarvis.py                  # same agent + tools in the terminal
 | File | What it's for |
 |---|---|
 | `jarvis.py` | Main agent: chat, email drafting/sending, `/bulk`, `/bulk-role` |
-| `rag.py` | Local knowledge base (ChromaDB + sentence-transformers) that Jarvis searches for context |
+| `rag.py` | Local knowledge base (ChromaDB hybrid dense+BM25 search, heading-aware chunks) that Jarvis searches for context |
 | `templates.json` | Role-matched middle paragraphs for `/bulk-role` (ml, nlp, cv, systems, data, robotics) |
 | `recipients.csv` | IIT KGP professor list with names + matched research type, ready for `/bulk-role` |
 | `emails.txt` | Plain address list, for `/bulk` (same email to everyone) |
