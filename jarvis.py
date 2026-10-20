@@ -101,7 +101,7 @@ SYSTEM_PROMPT = (
 # it actually lives). When present, it's attached to every outreach email
 # automatically -- single sends, /bulk, and /bulk-role alike.
 RESUME_PATH = os.environ.get("RESUME_PATH", "tiru-venkatesh.pdf")
-PORTFOLIO_URL = "https://tiru-venkatesh.vercel.app"
+PORTFOLIO_URL = "https://tiru-venkatesh.github.io"
 
 
 def resume_available() -> bool:
@@ -151,7 +151,10 @@ TOKEN_FILE = _resolve_secret_path("GMAIL_TOKEN_FILE", "token.json")
 # /etc/secrets is read-only on Render. TOKEN_FILE (which still has a valid
 # refresh_token) gets re-read and re-refreshed on every cold start, so
 # nothing is lost by not persisting the refreshed copy.
-TOKEN_WRITE_PATH = os.environ.get("GMAIL_TOKEN_WRITE_FILE", "/tmp/gmail_token.json")
+TOKEN_WRITE_PATH = os.environ.get(
+    "GMAIL_TOKEN_WRITE_FILE",
+    "/tmp/gmail_token.json" if TOKEN_FILE.startswith("/etc/secrets") else TOKEN_FILE,
+)
 
 
 def get_gmail_service():
@@ -195,7 +198,8 @@ def send_gmail(to: str, subject: str, body: str, attach_path: str = None) -> str
     """Send an email via the Gmail API. If attach_path points at a real file
     (defaults to RESUME_PATH when attach_resume is used upstream), it's
     attached as-is -- e.g. tiru-venkatesh.pdf. Returns the sent message id."""
-    service = get_gmail_service()
+    use_smtp = bool(os.environ.get("GMAIL_APP_PASSWORD"))
+    service = None if use_smtp else get_gmail_service()
 
     if attach_path and os.path.exists(attach_path):
         message = MIMEMultipart()
@@ -213,6 +217,18 @@ def send_gmail(to: str, subject: str, body: str, attach_path: str = None) -> str
 
     message["to"] = to
     message["subject"] = subject
+    if use_smtp:
+        # App Password route: no Google Cloud / credentials.json needed.
+        import smtplib
+        sender = os.environ.get("GMAIL_ADDRESS", "")
+        if not sender:
+            raise RuntimeError("Set GMAIL_ADDRESS (your Gmail) along with GMAIL_APP_PASSWORD.")
+        message["from"] = sender
+        pwd = os.environ["GMAIL_APP_PASSWORD"].replace(" ", "")
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=30) as smtp:
+            smtp.login(sender, pwd)
+            smtp.send_message(message)
+        return "smtp-sent"
     raw = base64.urlsafe_b64encode(message.as_bytes()).decode()
     sent = service.users().messages().send(userId="me", body={"raw": raw}).execute()
     return sent.get("id", "unknown")
@@ -409,7 +425,7 @@ EMAIL_ASK = (
 )
 
 EMAIL_CLOSING = (
-    "Portfolio: https://tiru-venkatesh.vercel.app\n"
+    "Portfolio: https://tiru-venkatesh.github.io\n"
     "GitHub: https://github.com/tiru-venkatesh\n"
     "LinkedIn: https://www.linkedin.com/in/tiru-venkatesh-830907202/\n\n"
     "I've attached my resume for reference, and would be happy to share "
@@ -436,7 +452,7 @@ def load_recipients_csv(path: str) -> list:
     if not os.path.exists(path):
         raise RuntimeError(f"File not found: {path}")
     rows = []
-    with open(path, "r", encoding="utf-8", newline="") as f:
+    with open(path, "r", encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
         for r in reader:
             email = (r.get("email") or "").strip()
