@@ -6,7 +6,7 @@ development services to local businesses (gyms, restaurants). He also
 participates in hackathons.
 
 GitHub: https://github.com/tiru-venkatesh
-Portfolio: https://tiru-venkatesh.vercel.app
+Portfolio: https://tiru-venkatesh.github.io
 LinkedIn: https://www.linkedin.com/in/tiru-venkatesh-830907202/
 Contact: tiruvenkatesh123@gmail.com
 
