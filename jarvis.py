@@ -198,7 +198,11 @@ def send_gmail(to: str, subject: str, body: str, attach_path: str = None) -> str
     """Send an email via the Gmail API. If attach_path points at a real file
     (defaults to RESUME_PATH when attach_resume is used upstream), it's
     attached as-is -- e.g. tiru-venkatesh.pdf. Returns the sent message id."""
-    use_smtp = bool(os.environ.get("GMAIL_APP_PASSWORD"))
+    # Prefer the Gmail API (HTTPS) whenever a token is available: hosts like
+    # Render's free tier block outbound SMTP ports (465/587), so the App
+    # Password route only works on machines that allow SMTP.
+    have_api_token = os.path.exists(TOKEN_FILE)
+    use_smtp = bool(os.environ.get("GMAIL_APP_PASSWORD")) and not have_api_token
     service = None if use_smtp else get_gmail_service()
 
     if attach_path and os.path.exists(attach_path):
@@ -225,9 +229,16 @@ def send_gmail(to: str, subject: str, body: str, attach_path: str = None) -> str
             raise RuntimeError("Set GMAIL_ADDRESS (your Gmail) along with GMAIL_APP_PASSWORD.")
         message["from"] = sender
         pwd = os.environ["GMAIL_APP_PASSWORD"].replace(" ", "")
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=30) as smtp:
-            smtp.login(sender, pwd)
-            smtp.send_message(message)
+        try:
+            with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=10) as smtp:
+                smtp.login(sender, pwd)
+                smtp.send_message(message)
+        except OSError as e:
+            raise RuntimeError(
+                f"Could not reach smtp.gmail.com:465 ({e}). This host probably "
+                "blocks SMTP (Render's free tier does). Use the Gmail API "
+                "instead: upload token.json as a Secret File."
+            )
         return "smtp-sent"
     raw = base64.urlsafe_b64encode(message.as_bytes()).decode()
     sent = service.users().messages().send(userId="me", body={"raw": raw}).execute()
